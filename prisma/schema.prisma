@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type googleStats {
+  competition Float?
+  cpc         String?
+  timeStamp   DateTime @db.Date
+  volume      Int
+}
+
+type InstagramStats {
+  count     Int
+  timeStamp DateTime @db.Date
+}
+
+type RedditStats {
+  /// Multiple data types found: Float: 95.5%, Int: 4.5% out of 2828 sampled entries
+  commentsPerHour     Json?
+  /// Multiple data types found: Float: 95.4%, Int: 4.6% out of 2828 sampled entries
+  postsPerHour        Json?
+  subscriberCount     Int?
+  subscriberCountRank Int?
+  timeStamp           DateTime @db.Date
+}
+
+model google {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  platform String
+  keyword  String
+
+  createdAt  DateTime @db.Date
+  modifiedAt DateTime @db.Date
+  
+  stats googleStats[]
+}
+
+model instagram {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  keyword  String
+  platform String
+  
+  createdAt  DateTime @db.Date
+  modifiedAt DateTime @db.Date
+  
+  stats InstagramStats[]
+}
+
+model reddit {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  keyword  String
+  platform String
+
+  createdAt  DateTime? @db.Date
+  modifiedAt DateTime  @db.Date
+
+  stats RedditStats[]
+}
+
+model results {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
