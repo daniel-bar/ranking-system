@@ -4,9 +4,8 @@ import fs from 'fs-extra';
 
 import GlobalInstance from '../global-instance';
 import type { IGoogleData } from '../interfaces/google';
-import type { IScore } from '../interfaces/score';
 
-export const googleScore = async (): Promise<IScore> => {
+export const googleScore = async () => {
 	let score = 0;
 	let averageScore = 0;
 

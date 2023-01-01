@@ -4,9 +4,8 @@ import fs from 'fs-extra';
 
 import GlobalInstance from '../global-instance';
 import type { IInstagramData } from '../interfaces/instagram';
-import type { IScore } from '../interfaces/score';
 
-export const instagramScore = async (): Promise<IScore> => {
+export const instagramScore = async () => {
 	let score = 0;
 	let averageScore = 0;
 

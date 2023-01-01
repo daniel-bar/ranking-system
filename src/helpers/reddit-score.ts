@@ -4,9 +4,8 @@ import fs from 'fs-extra';
 
 import GlobalInstance from '../global-instance';
 import type { IRedditData } from '../interfaces/reddit';
-import type { IScore } from '../interfaces/score';
 
-export const redditScore = async (): Promise<IScore> => {
+export const redditScore = async () => {
 	let score = 0;
 	let averageScore = 0;
 
